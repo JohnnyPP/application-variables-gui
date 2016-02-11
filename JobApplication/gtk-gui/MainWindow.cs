@@ -9,31 +9,31 @@ public partial class MainWindow
 	
 	private global::Gtk.Label label5;
 	
-	private global::Gtk.Entry entry1;
+	private global::Gtk.Entry Corporation;
 	
 	private global::Gtk.HBox hbox3;
 	
 	private global::Gtk.Label label6;
 	
-	private global::Gtk.Entry entry2;
+	private global::Gtk.Entry Recruiting;
 	
 	private global::Gtk.HBox hbox1;
 	
 	private global::Gtk.Label label7;
 	
-	private global::Gtk.Entry entry3;
+	private global::Gtk.Entry Person;
 	
 	private global::Gtk.HBox hbox4;
 	
-	private global::Gtk.Label label8;
+	private global::Gtk.Label StreetLabel;
 	
-	private global::Gtk.Entry entry4;
+	private global::Gtk.Entry Street;
 	
 	private global::Gtk.HBox hbox6;
 	
 	private global::Gtk.Label label10;
 	
-	private global::Gtk.Entry entry5;
+	private global::Gtk.Entry City;
 	
 	private global::Gtk.Button button1;
 	
@@ -47,13 +47,13 @@ public partial class MainWindow
 	
 	private global::Gtk.Label label20;
 	
-	private global::Gtk.Entry entry10;
+	private global::Gtk.Entry Salary;
 	
 	private global::Gtk.HBox hbox9;
 	
 	private global::Gtk.Label label16;
 	
-	private global::Gtk.Entry entry9;
+	private global::Gtk.Entry Email;
 	
 	private global::Gtk.HBox hbox8;
 	
@@ -61,11 +61,11 @@ public partial class MainWindow
 	
 	private global::Gtk.Label label13;
 	
-	private global::Gtk.Entry entry7;
+	private global::Gtk.Entry JobNumber;
 	
 	private global::Gtk.Label label15;
 	
-	private global::Gtk.Entry entry8;
+	private global::Gtk.Entry JobPosition;
 	
 	private global::Gtk.HBox hbox5;
 	
@@ -73,9 +73,9 @@ public partial class MainWindow
 	
 	private global::Gtk.Label label11;
 	
-	private global::Gtk.ComboBox combobox1;
+	private global::Gtk.ComboBox LetterOpeningCombo;
 	
-	private global::Gtk.Entry entry6;
+	private global::Gtk.Entry LetterOpeningPerson;
 
 	protected virtual void Build ()
 	{
@@ -96,6 +96,7 @@ public partial class MainWindow
 		// Container child hbox2.Gtk.Box+BoxChild
 		this.label5 = new global::Gtk.Label ();
 		this.label5.Name = "label5";
+		this.label5.Xalign = 0F;
 		this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("Corporation");
 		this.hbox2.Add (this.label5);
 		global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label5]));
@@ -103,13 +104,13 @@ public partial class MainWindow
 		w1.Expand = false;
 		w1.Fill = false;
 		// Container child hbox2.Gtk.Box+BoxChild
-		this.entry1 = new global::Gtk.Entry ();
-		this.entry1.CanFocus = true;
-		this.entry1.Name = "entry1";
-		this.entry1.IsEditable = true;
-		this.entry1.InvisibleChar = '●';
-		this.hbox2.Add (this.entry1);
-		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.entry1]));
+		this.Corporation = new global::Gtk.Entry ();
+		this.Corporation.CanFocus = true;
+		this.Corporation.Name = "Corporation";
+		this.Corporation.IsEditable = true;
+		this.Corporation.InvisibleChar = '●';
+		this.hbox2.Add (this.Corporation);
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.Corporation]));
 		w2.Position = 1;
 		this.vbox1.Add (this.hbox2);
 		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox2]));
@@ -131,13 +132,13 @@ public partial class MainWindow
 		w4.Expand = false;
 		w4.Fill = false;
 		// Container child hbox3.Gtk.Box+BoxChild
-		this.entry2 = new global::Gtk.Entry ();
-		this.entry2.CanFocus = true;
-		this.entry2.Name = "entry2";
-		this.entry2.IsEditable = true;
-		this.entry2.InvisibleChar = '●';
-		this.hbox3.Add (this.entry2);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.entry2]));
+		this.Recruiting = new global::Gtk.Entry ();
+		this.Recruiting.CanFocus = true;
+		this.Recruiting.Name = "Recruiting";
+		this.Recruiting.IsEditable = true;
+		this.Recruiting.InvisibleChar = '●';
+		this.hbox3.Add (this.Recruiting);
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.Recruiting]));
 		w5.Position = 1;
 		this.vbox1.Add (this.hbox3);
 		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox3]));
@@ -158,13 +159,13 @@ public partial class MainWindow
 		w7.Position = 0;
 		w7.Expand = false;
 		// Container child hbox1.Gtk.Box+BoxChild
-		this.entry3 = new global::Gtk.Entry ();
-		this.entry3.CanFocus = true;
-		this.entry3.Name = "entry3";
-		this.entry3.IsEditable = true;
-		this.entry3.InvisibleChar = '●';
-		this.hbox1.Add (this.entry3);
-		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.entry3]));
+		this.Person = new global::Gtk.Entry ();
+		this.Person.CanFocus = true;
+		this.Person.Name = "Person";
+		this.Person.IsEditable = true;
+		this.Person.InvisibleChar = '●';
+		this.hbox1.Add (this.Person);
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.Person]));
 		w8.Position = 1;
 		this.vbox1.Add (this.hbox1);
 		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
@@ -176,22 +177,22 @@ public partial class MainWindow
 		this.hbox4.Name = "hbox4";
 		this.hbox4.Spacing = 6;
 		// Container child hbox4.Gtk.Box+BoxChild
-		this.label8 = new global::Gtk.Label ();
-		this.label8.Name = "label8";
-		this.label8.LabelProp = global::Mono.Unix.Catalog.GetString ("Street");
-		this.hbox4.Add (this.label8);
-		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.label8]));
+		this.StreetLabel = new global::Gtk.Label ();
+		this.StreetLabel.Name = "StreetLabel";
+		this.StreetLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Street");
+		this.hbox4.Add (this.StreetLabel);
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.StreetLabel]));
 		w10.Position = 0;
 		w10.Expand = false;
 		w10.Fill = false;
 		// Container child hbox4.Gtk.Box+BoxChild
-		this.entry4 = new global::Gtk.Entry ();
-		this.entry4.CanFocus = true;
-		this.entry4.Name = "entry4";
-		this.entry4.IsEditable = true;
-		this.entry4.InvisibleChar = '●';
-		this.hbox4.Add (this.entry4);
-		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.entry4]));
+		this.Street = new global::Gtk.Entry ();
+		this.Street.CanFocus = true;
+		this.Street.Name = "Street";
+		this.Street.IsEditable = true;
+		this.Street.InvisibleChar = '●';
+		this.hbox4.Add (this.Street);
+		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.Street]));
 		w11.Position = 1;
 		this.vbox1.Add (this.hbox4);
 		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox4]));
@@ -212,13 +213,13 @@ public partial class MainWindow
 		w13.Expand = false;
 		w13.Fill = false;
 		// Container child hbox6.Gtk.Box+BoxChild
-		this.entry5 = new global::Gtk.Entry ();
-		this.entry5.CanFocus = true;
-		this.entry5.Name = "entry5";
-		this.entry5.IsEditable = true;
-		this.entry5.InvisibleChar = '●';
-		this.hbox6.Add (this.entry5);
-		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.entry5]));
+		this.City = new global::Gtk.Entry ();
+		this.City.CanFocus = true;
+		this.City.Name = "City";
+		this.City.IsEditable = true;
+		this.City.InvisibleChar = '●';
+		this.hbox6.Add (this.City);
+		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.City]));
 		w14.Position = 1;
 		this.vbox1.Add (this.hbox6);
 		global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox6]));
@@ -282,14 +283,14 @@ public partial class MainWindow
 		w20.Expand = false;
 		w20.Fill = false;
 		// Container child hbox10.Gtk.Box+BoxChild
-		this.entry10 = new global::Gtk.Entry ();
-		this.entry10.CanFocus = true;
-		this.entry10.Name = "entry10";
-		this.entry10.Text = global::Mono.Unix.Catalog.GetString ("56 000,- und 66 000,-");
-		this.entry10.IsEditable = true;
-		this.entry10.InvisibleChar = '●';
-		this.hbox10.Add (this.entry10);
-		global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox10 [this.entry10]));
+		this.Salary = new global::Gtk.Entry ();
+		this.Salary.CanFocus = true;
+		this.Salary.Name = "Salary";
+		this.Salary.Text = global::Mono.Unix.Catalog.GetString ("56 000,- und 66 000,-");
+		this.Salary.IsEditable = true;
+		this.Salary.InvisibleChar = '●';
+		this.hbox10.Add (this.Salary);
+		global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox10 [this.Salary]));
 		w21.PackType = ((global::Gtk.PackType)(1));
 		w21.Position = 4;
 		this.vbox1.Add (this.hbox10);
@@ -312,13 +313,13 @@ public partial class MainWindow
 		w23.Expand = false;
 		w23.Fill = false;
 		// Container child hbox9.Gtk.Box+BoxChild
-		this.entry9 = new global::Gtk.Entry ();
-		this.entry9.CanFocus = true;
-		this.entry9.Name = "entry9";
-		this.entry9.IsEditable = true;
-		this.entry9.InvisibleChar = '●';
-		this.hbox9.Add (this.entry9);
-		global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.entry9]));
+		this.Email = new global::Gtk.Entry ();
+		this.Email.CanFocus = true;
+		this.Email.Name = "Email";
+		this.Email.IsEditable = true;
+		this.Email.InvisibleChar = '●';
+		this.hbox9.Add (this.Email);
+		global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.Email]));
 		w24.Position = 1;
 		this.vbox1.Add (this.hbox9);
 		global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox9]));
@@ -349,13 +350,13 @@ public partial class MainWindow
 		w27.Expand = false;
 		w27.Fill = false;
 		// Container child hbox8.Gtk.Box+BoxChild
-		this.entry7 = new global::Gtk.Entry ();
-		this.entry7.CanFocus = true;
-		this.entry7.Name = "entry7";
-		this.entry7.IsEditable = true;
-		this.entry7.InvisibleChar = '●';
-		this.hbox8.Add (this.entry7);
-		global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.entry7]));
+		this.JobNumber = new global::Gtk.Entry ();
+		this.JobNumber.CanFocus = true;
+		this.JobNumber.Name = "JobNumber";
+		this.JobNumber.IsEditable = true;
+		this.JobNumber.InvisibleChar = '●';
+		this.hbox8.Add (this.JobNumber);
+		global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.JobNumber]));
 		w28.Position = 2;
 		// Container child hbox8.Gtk.Box+BoxChild
 		this.label15 = new global::Gtk.Label ();
@@ -367,13 +368,13 @@ public partial class MainWindow
 		w29.Expand = false;
 		w29.Fill = false;
 		// Container child hbox8.Gtk.Box+BoxChild
-		this.entry8 = new global::Gtk.Entry ();
-		this.entry8.CanFocus = true;
-		this.entry8.Name = "entry8";
-		this.entry8.IsEditable = true;
-		this.entry8.InvisibleChar = '●';
-		this.hbox8.Add (this.entry8);
-		global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.entry8]));
+		this.JobPosition = new global::Gtk.Entry ();
+		this.JobPosition.CanFocus = true;
+		this.JobPosition.Name = "JobPosition";
+		this.JobPosition.IsEditable = true;
+		this.JobPosition.InvisibleChar = '●';
+		this.hbox8.Add (this.JobPosition);
+		global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.JobPosition]));
 		w30.Position = 4;
 		this.vbox1.Add (this.hbox8);
 		global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox8]));
@@ -399,14 +400,14 @@ public partial class MainWindow
 		w32.Expand = false;
 		w32.Fill = false;
 		// Container child hbox7.Gtk.Box+BoxChild
-		this.combobox1 = global::Gtk.ComboBox.NewText ();
-		this.combobox1.AppendText (global::Mono.Unix.Catalog.GetString ("Sehr geehrte Damen und Herren"));
-		this.combobox1.AppendText (global::Mono.Unix.Catalog.GetString ("Sehr geehrte Frau"));
-		this.combobox1.AppendText (global::Mono.Unix.Catalog.GetString ("Sehr geehrter Herr"));
-		this.combobox1.Name = "combobox1";
-		this.combobox1.Active = 0;
-		this.hbox7.Add (this.combobox1);
-		global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.combobox1]));
+		this.LetterOpeningCombo = global::Gtk.ComboBox.NewText ();
+		this.LetterOpeningCombo.AppendText (global::Mono.Unix.Catalog.GetString ("Sehr geehrte Damen und Herren"));
+		this.LetterOpeningCombo.AppendText (global::Mono.Unix.Catalog.GetString ("Sehr geehrte Frau"));
+		this.LetterOpeningCombo.AppendText (global::Mono.Unix.Catalog.GetString ("Sehr geehrter Herr"));
+		this.LetterOpeningCombo.Name = "LetterOpeningCombo";
+		this.LetterOpeningCombo.Active = 0;
+		this.hbox7.Add (this.LetterOpeningCombo);
+		global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.LetterOpeningCombo]));
 		w33.Position = 1;
 		w33.Expand = false;
 		w33.Fill = false;
@@ -416,13 +417,13 @@ public partial class MainWindow
 		w34.Expand = false;
 		w34.Fill = false;
 		// Container child hbox5.Gtk.Box+BoxChild
-		this.entry6 = new global::Gtk.Entry ();
-		this.entry6.CanFocus = true;
-		this.entry6.Name = "entry6";
-		this.entry6.IsEditable = true;
-		this.entry6.InvisibleChar = '●';
-		this.hbox5.Add (this.entry6);
-		global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.entry6]));
+		this.LetterOpeningPerson = new global::Gtk.Entry ();
+		this.LetterOpeningPerson.CanFocus = true;
+		this.LetterOpeningPerson.Name = "LetterOpeningPerson";
+		this.LetterOpeningPerson.IsEditable = true;
+		this.LetterOpeningPerson.InvisibleChar = '●';
+		this.hbox5.Add (this.LetterOpeningPerson);
+		global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.LetterOpeningPerson]));
 		w35.PackType = ((global::Gtk.PackType)(1));
 		w35.Position = 1;
 		this.vbox1.Add (this.hbox5);
@@ -439,5 +440,6 @@ public partial class MainWindow
 		this.DefaultHeight = 318;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.button1.Clicked += new global::System.EventHandler (this.OnButton1Clicked);
 	}
 }

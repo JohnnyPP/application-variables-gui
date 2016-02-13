@@ -77,6 +77,15 @@ public partial class MainWindow: Gtk.Window
 		string coverLetterEmail = System.IO.File.ReadAllText(_pathVariables);
 		Email.Text = coverLetterEmail;
 
+		_pathVariables = _pathShell + "coverLetterRecipientSecondLine.txt";
+		string coverLetterRecipientSecondLine = System.IO.File.ReadAllText(_pathVariables);
+		string[] stringSeparator = new string[] {"\\"};
+		string[] separatedRecipientSecondLine = coverLetterRecipientSecondLine.Split(stringSeparator, StringSplitOptions.RemoveEmptyEntries);
+
+		Recruiting.Text = separatedRecipientSecondLine [0].Trim();
+		Person.Text = separatedRecipientSecondLine [1].Trim();
+		Street.Text = separatedRecipientSecondLine [2].Trim();
+		City.Text = separatedRecipientSecondLine [3].Trim();
 
 		
 	}
@@ -122,7 +131,11 @@ public partial class MainWindow: Gtk.Window
 			outfile.Write("Bewerbung auf die Stelle " + JobNumber.Text + " als " + JobPosition.Text);
 		}
 
-	
+
+		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterRecipientFirstLine.txt"))
+		{
+			outfile.Write(Corporation.Text);
+		}
 
 
 

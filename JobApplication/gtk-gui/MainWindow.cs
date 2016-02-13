@@ -147,7 +147,6 @@ public partial class MainWindow
 		w6.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.hbox1 = new global::Gtk.HBox ();
-		this.hbox1.Name = "hbox1";
 		this.hbox1.Spacing = 6;
 		// Container child hbox1.Gtk.Box+BoxChild
 		this.label7 = new global::Gtk.Label ();
@@ -436,7 +435,7 @@ public partial class MainWindow
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 642;
+		this.DefaultWidth = 1017;
 		this.DefaultHeight = 318;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);

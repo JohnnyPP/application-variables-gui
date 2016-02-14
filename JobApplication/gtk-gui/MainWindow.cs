@@ -41,7 +41,7 @@ public partial class MainWindow
 	
 	private global::Gtk.Label label18;
 	
-	private global::Gtk.CheckButton checkbutton1;
+	private global::Gtk.CheckButton checkButtonSalary;
 	
 	private global::Gtk.Label label19;
 	
@@ -147,6 +147,7 @@ public partial class MainWindow
 		w6.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.hbox1 = new global::Gtk.HBox ();
+		this.hbox1.Name = "hbox1";
 		this.hbox1.Spacing = 6;
 		// Container child hbox1.Gtk.Box+BoxChild
 		this.label7 = new global::Gtk.Label ();
@@ -251,14 +252,14 @@ public partial class MainWindow
 		w17.Expand = false;
 		w17.Fill = false;
 		// Container child hbox10.Gtk.Box+BoxChild
-		this.checkbutton1 = new global::Gtk.CheckButton ();
-		this.checkbutton1.CanFocus = true;
-		this.checkbutton1.Name = "checkbutton1";
-		this.checkbutton1.Label = "";
-		this.checkbutton1.DrawIndicator = true;
-		this.checkbutton1.UseUnderline = true;
-		this.hbox10.Add (this.checkbutton1);
-		global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox10 [this.checkbutton1]));
+		this.checkButtonSalary = new global::Gtk.CheckButton ();
+		this.checkButtonSalary.CanFocus = true;
+		this.checkButtonSalary.Name = "checkButtonSalary";
+		this.checkButtonSalary.Label = "";
+		this.checkButtonSalary.DrawIndicator = true;
+		this.checkButtonSalary.UseUnderline = true;
+		this.hbox10.Add (this.checkButtonSalary);
+		global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox10 [this.checkButtonSalary]));
 		w18.Position = 1;
 		w18.Expand = false;
 		w18.Fill = false;
@@ -285,7 +286,6 @@ public partial class MainWindow
 		this.Salary = new global::Gtk.Entry ();
 		this.Salary.CanFocus = true;
 		this.Salary.Name = "Salary";
-		this.Salary.Text = global::Mono.Unix.Catalog.GetString ("56 000,- und 66 000,-");
 		this.Salary.IsEditable = true;
 		this.Salary.InvisibleChar = '●';
 		this.hbox10.Add (this.Salary);
@@ -439,6 +439,7 @@ public partial class MainWindow
 		this.DefaultHeight = 318;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.checkButtonSalary.Clicked += new global::System.EventHandler (this.OnCheckButtonSalaryClicked);
 		this.button1.Clicked += new global::System.EventHandler (this.OnButton1Clicked);
 	}
 }

@@ -87,6 +87,26 @@ public partial class MainWindow: Gtk.Window
 		Street.Text = separatedRecipientSecondLine [2].Trim();
 		City.Text = separatedRecipientSecondLine [3].Trim();
 
+
+		_pathVariables = _pathShell + "coverLetterSalary.txt";
+		string coverLetterSalary = System.IO.File.ReadAllText(_pathVariables);
+		if (coverLetterSalary == "\\")
+		{
+			Salary.Text = "";
+			checkButtonSalary.Active = false;
+		}
+		else 
+		{
+			string[] salarySeparators = new string[] {"Meine Gehaltsvorstellungen liegen zwischen "," Euro brutto im Jahr."};
+			string[] salaryPosition = coverLetterSalary.Split(salarySeparators, StringSplitOptions.RemoveEmptyEntries);
+			Salary.Text = salaryPosition [0].Trim();
+			checkButtonSalary.Active = true;
+		}
+
+
+
+
+
 		
 	}
 
@@ -137,7 +157,34 @@ public partial class MainWindow: Gtk.Window
 			outfile.Write(Corporation.Text);
 		}
 
+		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterRecipientSecondLine.txt"))
+		{
+			outfile.Write(Recruiting.Text + "\\\\" + Person.Text + "\\\\" + Street.Text + "\\\\" + City.Text);
+		}
 
+		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterSalary.txt"))
+		{
+			if (checkButtonSalary.Active) 
+			{
+				outfile.Write("Meine Gehaltsvorstellungen liegen zwischen " + Salary.Text + " Euro brutto im Jahr.");
+			} 
+			else 
+			{
+				outfile.Write("\\");
+			}
+		}
 
+	}
+		
+	protected void OnCheckButtonSalaryClicked (object sender, EventArgs e)
+	{
+		if (checkButtonSalary.Active == true) 
+		{
+			Salary.Text = "56 000,- und 66 000,-";
+		} 
+		else 
+		{
+			Salary.Text = "";
+		}
 	}
 }

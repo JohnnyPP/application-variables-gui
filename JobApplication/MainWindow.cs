@@ -255,6 +255,8 @@ public partial class MainWindow: Gtk.Window
 	/// </summary>
 	private void CoverLetterRecipientSecondLine()
 	{
+		var emptyStrings = 0;
+
 		string[] fileNames = new[] 
 		{
 			"helperRecipientSecondLine0.txt",
@@ -263,7 +265,15 @@ public partial class MainWindow: Gtk.Window
 			"helperRecipientSecondLine3.txt"
 		};
 
-		var count = fileNames.Length-1;
+		foreach(var fileName in fileNames)
+		{
+			if (String.IsNullOrEmpty(ReadContent (fileName).Trim())) 
+			{
+				emptyStrings++;
+			}
+		}
+
+		var count = fileNames.Length-emptyStrings;
 
 		WriteContent (Recruiting.Text, fileNames[0]);
 		WriteContent (Person.Text, fileNames[1]);

@@ -39,6 +39,7 @@ public partial class MainWindow: Gtk.Window
 
 		if (coverLetterOpening.StartsWith ("Sehr geehrte Damen und Herren")) 
 		{
+			// ToDO: after choosing Sehr geehrte Damen und Herren the Person and LetterOpeningPerson should be emptied
 			// make combo swith to "Sehr geehrte Damen und Herren"
 			_personOpeningLetter = LetterOpeningPerson.Text = "";
 			LetterOpeningCombo.Active = 0;
@@ -255,7 +256,7 @@ public partial class MainWindow: Gtk.Window
 	/// </summary>
 	private void CoverLetterRecipientSecondLine()
 	{
-		var emptyStrings = 0;
+		//var emptyStrings = 0;
 
 		string[] fileNames = new[] 
 		{
@@ -265,15 +266,18 @@ public partial class MainWindow: Gtk.Window
 			"helperRecipientSecondLine3.txt"
 		};
 
-		foreach(var fileName in fileNames)
-		{
-			if (String.IsNullOrEmpty(ReadContent (fileName).Trim())) 
-			{
-				emptyStrings++;
-			}
-		}
+//		foreach(var fileName in fileNames)
+//		{
+//			if (String.IsNullOrEmpty(ReadContent (fileName).Trim())) 
+//			{
+//				emptyStrings++;
+//			}
+//		}
 
-		var count = fileNames.Length-emptyStrings;
+		System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+		//var count = fileNames.Length-emptyStrings;
+		var count = fileNames.Length;
 
 		WriteContent (Recruiting.Text, fileNames[0]);
 		WriteContent (Person.Text, fileNames[1]);
@@ -293,21 +297,25 @@ public partial class MainWindow: Gtk.Window
 						if (tempInput.Equals ("")) 
 						{
 							// If entry was empty do not use new line "\\" in Latex
-							output.Write(tempInput);
-							//--count;
+							//output.Write(tempInput);
+							sb.Append(tempInput);
 						}
 						else 
 						{
-							output.Write(tempInput + "\\\\");
+							//output.Write(tempInput + "\\\\");
+							sb.Append(tempInput + "\\\\");
 						}
 					}
 					else
 					{
 						// In last iteration also do not use new line "\\" in Latex
-						output.Write(tempInput);
+						//output.Write(tempInput);
+						sb.Append(tempInput);
 					}
 				}
 			}
+			string tempo = sb.ToString().TrimEnd('\\');
+			output.Write(tempo);
 		}
 	}
 }

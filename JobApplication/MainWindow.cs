@@ -34,7 +34,6 @@ public partial class MainWindow: Gtk.Window
 		string[] jobCodePosition = coverLetterJobPosition.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
 		JobPosition.Text = jobCodePosition [1].Trim();
 
-
 		_pathVariables = _pathShell + "coverLetterOpening.txt";
 		string coverLetterOpening = System.IO.File.ReadAllText(_pathVariables);
 
@@ -73,19 +72,67 @@ public partial class MainWindow: Gtk.Window
 
 
 
-		_pathVariables = _pathShell + "eMailAddress.txt";
-		string coverLetterEmail = System.IO.File.ReadAllText(_pathVariables);
-		Email.Text = coverLetterEmail;
+		//_pathVariables = _pathShell + "eMailAddress.txt";
+		//string coverLetterEmail = System.IO.File.ReadAllText(_pathVariables);
+		//Email.Text = coverLetterEmail;
 
-		_pathVariables = _pathShell + "coverLetterRecipientSecondLine.txt";
-		string coverLetterRecipientSecondLine = System.IO.File.ReadAllText(_pathVariables);
-		string[] stringSeparator = new string[] {"\\"};
-		string[] separatedRecipientSecondLine = coverLetterRecipientSecondLine.Split(stringSeparator, StringSplitOptions.RemoveEmptyEntries);
+		Email.Text = ReadContent ("eMailAddress.txt");
 
-		Recruiting.Text = separatedRecipientSecondLine [0].Trim();
-		Person.Text = separatedRecipientSecondLine [1].Trim();
-		Street.Text = separatedRecipientSecondLine [2].Trim();
-		City.Text = separatedRecipientSecondLine [3].Trim();
+		Recruiting.Text = ReadContent ("helperRecipientSecondLine0.txt").Trim();
+		Person.Text = ReadContent ("helperRecipientSecondLine1.txt").Trim();
+		Street.Text = ReadContent ("helperRecipientSecondLine2.txt").Trim();
+		City.Text = ReadContent ("helperRecipientSecondLine3.txt").Trim();
+
+//		_pathVariables = _pathShell + "coverLetterRecipientSecondLine.txt";
+//		string coverLetterRecipientSecondLine = System.IO.File.ReadAllText(_pathVariables);
+//		string[] stringSeparator = new string[] {"\\"};
+//		string[] separatedRecipientSecondLine = coverLetterRecipientSecondLine.Split(stringSeparator, StringSplitOptions.RemoveEmptyEntries);
+//
+//
+//		string isLineActive = ReadContent ("helperRecipientSecondLine.txt");
+//
+//		if (isLineActive [0].Equals('1'))
+//		{
+//			// Recrutig was used
+//			Recruiting.Text = separatedRecipientSecondLine [0].Trim();
+//		}
+//		else
+//		{
+//			Recruiting.Text = "";
+//		}
+//
+//		if (isLineActive [1].Equals('1'))
+//		{
+//			// Person was used
+//			Person.Text = separatedRecipientSecondLine [1].Trim();
+//		}
+//		else
+//		{
+//			Person.Text = "";
+//		}
+//
+//		if (isLineActive [2].Equals('1'))
+//		{
+//			// Street was used
+//			Street.Text = separatedRecipientSecondLine [2].Trim();
+//		}
+//		else
+//		{
+//			Street.Text = "";
+//		}
+//
+//		if (isLineActive [3].Equals('1'))
+//		{
+//			// City was used
+//			City.Text = separatedRecipientSecondLine [3].Trim();
+//		}
+//		else
+//		{
+//			City.Text = "";
+//		}
+
+
+
 
 
 		_pathVariables = _pathShell + "coverLetterSalary.txt";
@@ -114,6 +161,20 @@ public partial class MainWindow: Gtk.Window
 	{
 		Application.Quit ();
 		a.RetVal = true;
+	}
+
+	private string ReadContent (string fileName)
+	{
+		_pathVariables = _pathShell + fileName;
+		return System.IO.File.ReadAllText(_pathVariables);
+	}
+
+	private void WriteContent (string entry, string fileName)
+	{
+		using (StreamWriter outfile = new StreamWriter(_pathShell + fileName))
+		{
+			outfile.Write(entry);
+		}
 	}
 
 	protected void OnButton1Clicked (object sender, EventArgs e)
@@ -157,10 +218,8 @@ public partial class MainWindow: Gtk.Window
 			outfile.Write(Corporation.Text);
 		}
 
-		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterRecipientSecondLine.txt"))
-		{
-			outfile.Write(Recruiting.Text + "\\\\" + Person.Text + "\\\\" + Street.Text + "\\\\" + City.Text);
-		}
+		CoverLetterRecipientSecondLine ();
+			
 
 		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterSalary.txt"))
 		{
@@ -185,6 +244,60 @@ public partial class MainWindow: Gtk.Window
 		else 
 		{
 			Salary.Text = "";
+		}
+	}
+
+	/// <summary>
+	/// Writes contents of the helper fileNames to the coverLetterRecipientSecondLine.txt file
+	/// coverLetterRecipientSecondLine.txt file follows the pattern: "Recruiting\\Person\\Street\\City"
+	/// e.g. "Personalabteilung\\Karin Deckert\\Bahnhofstrasse\\Oberkochen"
+	/// where "\\" is the new line excape character in Latex 
+	/// </summary>
+	private void CoverLetterRecipientSecondLine()
+	{
+		string[] fileNames = new[] 
+		{
+			"helperRecipientSecondLine0.txt",
+			"helperRecipientSecondLine1.txt",
+			"helperRecipientSecondLine2.txt",
+			"helperRecipientSecondLine3.txt"
+		};
+
+		var count = fileNames.Length-1;
+
+		WriteContent (Recruiting.Text, fileNames[0]);
+		WriteContent (Person.Text, fileNames[1]);
+		WriteContent (Street.Text, fileNames[2]);
+		WriteContent (City.Text, fileNames[3]);
+
+		using (var output = new StreamWriter(_pathShell + "coverLetterRecipientSecondLine.txt"))
+		{
+			foreach (var file in fileNames)
+			{
+				using (var input = new StreamReader(_pathShell + file))
+				{
+					string tempInput = input.ReadToEnd().ToString();
+
+					if (--count > 0)
+					{
+						if (tempInput.Equals ("")) 
+						{
+							// If entry was empty do not use new line "\\" in Latex
+							output.Write(tempInput);
+							//--count;
+						}
+						else 
+						{
+							output.Write(tempInput + "\\\\");
+						}
+					}
+					else
+					{
+						// In last iteration also do not use new line "\\" in Latex
+						output.Write(tempInput);
+					}
+				}
+			}
 		}
 	}
 }

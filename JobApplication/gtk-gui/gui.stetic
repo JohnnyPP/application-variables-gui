@@ -433,6 +433,7 @@
 Sehr geehrte Frau
 Sehr geehrter Herr</property>
                     <property name="Active">0</property>
+                    <signal name="Changed" handler="OnLetterOpeningComboChanged" />
                   </widget>
                   <packing>
                     <property name="Position">1</property>

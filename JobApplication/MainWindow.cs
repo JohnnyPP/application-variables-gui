@@ -96,7 +96,6 @@ public partial class MainWindow: Gtk.Window
 	private void ReadOpening()
 	{
 		char[] trimComma = {','};
-		//string _personOpeningLetter;
 		_pathVariables = _pathShell + "coverLetterOpening.txt";
 		string coverLetterOpening = System.IO.File.ReadAllText(_pathVariables);
 
@@ -251,5 +250,15 @@ public partial class MainWindow: Gtk.Window
 		{
 			writeToFile.Write(appendedString);
 		}
+	}
+
+	protected void OnLetterOpeningComboChanged (object sender, EventArgs e)
+	{
+		if (LetterOpeningCombo.Active == 0) 
+		{
+			LetterOpeningPerson.Text = "";
+			Person.Text = "";
+		}
+		
 	}
 }

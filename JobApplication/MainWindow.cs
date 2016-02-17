@@ -252,12 +252,10 @@ public partial class MainWindow: Gtk.Window
 	/// Writes contents of the helper fileNames to the coverLetterRecipientSecondLine.txt file
 	/// coverLetterRecipientSecondLine.txt file follows the pattern: "Recruiting\\Person\\Street\\City"
 	/// e.g. "Personalabteilung\\Karin Deckert\\Bahnhofstrasse\\Oberkochen"
-	/// where "\\" is the new line excape character in Latex 
+	/// where "\\" is the new line escape character in Latex 
 	/// </summary>
 	private void CoverLetterRecipientSecondLine()
 	{
-		//var emptyStrings = 0;
-
 		string[] fileNames = new[] 
 		{
 			"helperRecipientSecondLine0.txt",
@@ -266,18 +264,7 @@ public partial class MainWindow: Gtk.Window
 			"helperRecipientSecondLine3.txt"
 		};
 
-//		foreach(var fileName in fileNames)
-//		{
-//			if (String.IsNullOrEmpty(ReadContent (fileName).Trim())) 
-//			{
-//				emptyStrings++;
-//			}
-//		}
-
 		System.Text.StringBuilder sb = new System.Text.StringBuilder();
-
-		//var count = fileNames.Length-emptyStrings;
-		var count = fileNames.Length;
 
 		WriteContent (Recruiting.Text, fileNames[0]);
 		WriteContent (Person.Text, fileNames[1]);
@@ -292,30 +279,18 @@ public partial class MainWindow: Gtk.Window
 				{
 					string tempInput = input.ReadToEnd().ToString();
 
-					if (--count > 0)
+					if (tempInput.Equals ("")) 
 					{
-						if (tempInput.Equals ("")) 
-						{
-							// If entry was empty do not use new line "\\" in Latex
-							//output.Write(tempInput);
-							sb.Append(tempInput);
-						}
-						else 
-						{
-							//output.Write(tempInput + "\\\\");
-							sb.Append(tempInput + "\\\\");
-						}
-					}
-					else
-					{
-						// In last iteration also do not use new line "\\" in Latex
-						//output.Write(tempInput);
 						sb.Append(tempInput);
+					}
+					else 
+					{
+						sb.Append(tempInput + "\\\\");
 					}
 				}
 			}
-			string tempo = sb.ToString().TrimEnd('\\');
-			output.Write(tempo);
+			string appendedString = sb.ToString().TrimEnd('\\');
+			output.Write(appendedString);
 		}
 	}
 }

@@ -45,6 +45,7 @@ public partial class MainWindow: Gtk.Window
 		WriteOpening ();
 		WriteCodeNumber ();
 		WritePosition ();
+		WriteSalary ();
 		CoverLetterRecipientSecondLine ();
 		WriteContent (Email.Text, "eMailAddress.txt");
 		WriteContent (Corporation.Text, "coverLetterRecipientFirstLine.txt");

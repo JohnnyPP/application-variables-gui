@@ -118,7 +118,7 @@ public partial class MainWindow: Gtk.Window
 		}
 	}
 
-	protected void OnButton1Clicked (object sender, EventArgs e)
+	protected void OnCreateApplicationClicked (object sender, EventArgs e)
 	{
 		
 
@@ -131,13 +131,7 @@ public partial class MainWindow: Gtk.Window
 			outfile.Write(temp);
 		}
 
-		//
-		// Writes eMailAddress.txt
-		//
-		using (StreamWriter outfile = new StreamWriter(_pathShell + "eMailAddress.txt"))
-		{
-			outfile.Write(Email.Text);
-		}
+		WriteContent (Email.Text, "eMailAddress.txt");
 
 		//
 		// Writes coverLetterCodeNumber.txt
@@ -174,6 +168,7 @@ public partial class MainWindow: Gtk.Window
 			}
 		}
 
+		Application.Quit ();
 	}
 		
 	protected void OnCheckButtonSalaryClicked (object sender, EventArgs e)

@@ -35,7 +35,7 @@ public partial class MainWindow
 	
 	private global::Gtk.Entry City;
 	
-	private global::Gtk.Button button1;
+	private global::Gtk.Button CreateApplication;
 	
 	private global::Gtk.HBox hbox10;
 	
@@ -227,13 +227,13 @@ public partial class MainWindow
 		w15.Expand = false;
 		w15.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.button1 = new global::Gtk.Button ();
-		this.button1.CanFocus = true;
-		this.button1.Name = "button1";
-		this.button1.UseUnderline = true;
-		this.button1.Label = global::Mono.Unix.Catalog.GetString ("Create application");
-		this.vbox1.Add (this.button1);
-		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.button1]));
+		this.CreateApplication = new global::Gtk.Button ();
+		this.CreateApplication.CanFocus = true;
+		this.CreateApplication.Name = "CreateApplication";
+		this.CreateApplication.UseUnderline = true;
+		this.CreateApplication.Label = global::Mono.Unix.Catalog.GetString ("Create application");
+		this.vbox1.Add (this.CreateApplication);
+		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.CreateApplication]));
 		w16.PackType = ((global::Gtk.PackType)(1));
 		w16.Position = 5;
 		w16.Expand = false;
@@ -440,6 +440,6 @@ public partial class MainWindow
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.checkButtonSalary.Clicked += new global::System.EventHandler (this.OnCheckButtonSalaryClicked);
-		this.button1.Clicked += new global::System.EventHandler (this.OnButton1Clicked);
+		this.CreateApplication.Clicked += new global::System.EventHandler (this.OnCreateApplicationClicked);
 	}
 }

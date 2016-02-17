@@ -199,13 +199,13 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Button" id="button1">
+          <widget class="Gtk.Button" id="CreateApplication">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
             <property name="Type">TextOnly</property>
             <property name="Label" translatable="yes">Create application</property>
             <property name="UseUnderline">True</property>
-            <signal name="Clicked" handler="OnButton1Clicked" />
+            <signal name="Clicked" handler="OnCreateApplicationClicked" />
           </widget>
           <packing>
             <property name="PackType">End</property>

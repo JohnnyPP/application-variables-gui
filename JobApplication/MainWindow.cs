@@ -264,6 +264,19 @@ public partial class MainWindow: Gtk.Window
 			City
 		};
 
+		string[] secondLineFiles = new[] 
+		{
+			"helperRecipientSecondLine0.txt",
+			"helperRecipientSecondLine1.txt",
+			"helperRecipientSecondLine2.txt",
+			"helperRecipientSecondLine3.txt"
+		};
+
+		for (int i = 0; i < 4; i++) 
+		{			
+			WriteContent (secondLineEntries [i].Text, secondLineFiles [i]);
+		}
+
 		System.Text.StringBuilder secondLineAppended = new System.Text.StringBuilder();
 
 		foreach (var entry in secondLineEntries)

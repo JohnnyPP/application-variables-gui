@@ -35,10 +35,39 @@ public partial class MainWindow: Gtk.Window
 		City.Text = ReadContent ("helperRecipientSecondLine3.txt");
 	}
 
+	/// <summary>
+	/// Raises the create application clicked event to write contents of the entries to the files
+	/// </summary>
+	/// <param name="sender">Sender.</param>
+	/// <param name="e">E.</param>
+	protected void OnCreateApplicationClicked (object sender, EventArgs e)
+	{
+		WriteOpening ();
+		WriteCodeNumber ();
+		WritePosition ();
+		CoverLetterRecipientSecondLine ();
+		WriteContent (Email.Text, "eMailAddress.txt");
+		WriteContent (Corporation.Text, "coverLetterRecipientFirstLine.txt");
+
+		Application.Quit ();
+	}
+
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		Application.Quit ();
 		a.RetVal = true;
+	}
+
+	protected void OnCheckButtonSalaryClicked (object sender, EventArgs e)
+	{
+		if (checkButtonSalary.Active == true) 
+		{
+			Salary.Text = "56 000,- und 66 000,-";
+		} 
+		else 
+		{
+			Salary.Text = "";
+		}
 	}
 
 	private string ReadContent (string fileName)
@@ -57,7 +86,7 @@ public partial class MainWindow: Gtk.Window
 
 	private void ReadJobPosition()
 	{
-		char[] trimCoverLetterJobNumber = { '\\', ' ', ',' };
+		//char[] trimCoverLetterJobNumber = { '\\', ' ', ',' };
 		_pathVariables = _pathShell + "coverLetterPosition.txt";
 		string coverLetterJobPosition = System.IO.File.ReadAllText(_pathVariables);
 		string[] stringSeparators = new string[] {"Bewerbung auf die Stelle "," als"};
@@ -118,44 +147,11 @@ public partial class MainWindow: Gtk.Window
 		}
 	}
 
-	protected void OnCreateApplicationClicked (object sender, EventArgs e)
+	/// <summary>
+	/// Writes coverLetterSalary.txt
+	/// </summary>
+	private void WriteSalary()
 	{
-		
-
-		//
-		// Writes coverLetterOpening.txt
-		//
-		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterOpening.txt"))
-		{
-			string temp = LetterOpeningCombo.ActiveText + " " + LetterOpeningPerson.Text;
-			outfile.Write(temp);
-		}
-
-		WriteContent (Email.Text, "eMailAddress.txt");
-
-		//
-		// Writes coverLetterCodeNumber.txt
-		//
-		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterCodeNumber.txt"))
-		{
-			outfile.Write("\\ " + JobNumber.Text);
-		}
-
-
-		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterPosition.txt"))
-		{
-			outfile.Write("Bewerbung auf die Stelle " + JobNumber.Text + " als " + JobPosition.Text);
-		}
-
-
-		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterRecipientFirstLine.txt"))
-		{
-			outfile.Write(Corporation.Text);
-		}
-
-		CoverLetterRecipientSecondLine ();
-			
-
 		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterSalary.txt"))
 		{
 			if (checkButtonSalary.Active) 
@@ -167,21 +163,43 @@ public partial class MainWindow: Gtk.Window
 				outfile.Write("\\");
 			}
 		}
-
-		Application.Quit ();
 	}
-		
-	protected void OnCheckButtonSalaryClicked (object sender, EventArgs e)
+
+	/// <summary>
+	/// Writes coverLetterPosition.txt
+	/// </summary>
+	private void WritePosition()
 	{
-		if (checkButtonSalary.Active == true) 
+		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterPosition.txt"))
 		{
-			Salary.Text = "56 000,- und 66 000,-";
-		} 
-		else 
-		{
-			Salary.Text = "";
+			outfile.Write("Bewerbung auf die Stelle " + JobNumber.Text + " als " + JobPosition.Text);
 		}
 	}
+
+	/// <summary>
+	/// Writes coverLetterOpening.txt
+	/// </summary>
+	private void WriteOpening()
+	{
+		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterOpening.txt"))
+		{
+			string temp = LetterOpeningCombo.ActiveText + " " + LetterOpeningPerson.Text;
+			outfile.Write(temp);
+		}
+	}
+
+	/// <summary>
+	/// Writes coverLetterCodeNumber.txt
+	/// </summary>
+	private void WriteCodeNumber()
+	{
+		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterCodeNumber.txt"))
+		{
+			outfile.Write("\\ " + JobNumber.Text);
+		}
+	}
+		
+
 
 	/// <summary>
 	/// Writes contents of the entries to the coverLetterRecipientSecondLine.txt file.

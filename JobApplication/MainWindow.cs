@@ -18,27 +18,21 @@ public partial class MainWindow: Gtk.Window
 		Initialization ();
 	}
 
+	/// <summary>
+	/// Initalizes the entries with the content of the files from variables folder
+	/// </summary>
 	private void Initialization()
 	{
-		char[] trimCoverLetterJobNumber = { '\\', ' ', ',' };
-
-		JobNumber.Text = ReadContent("coverLetterCodeNumber.txt");
-
-		_pathVariables = _pathShell + "coverLetterPosition.txt";
-		string coverLetterJobPosition = System.IO.File.ReadAllText(_pathVariables);
-		string[] stringSeparators = new string[] {"Bewerbung auf die Stelle "," als"};
-		string[] jobCodePosition = coverLetterJobPosition.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
-		JobPosition.Text = jobCodePosition [1].Trim();
-
-		CoverLetterOpening ();
-
+		ReadJobPosition ();
+		ReadOpening ();
+		ReadSalary ();
+		JobNumber.Text = ReadContent("coverLetterCodeNumber.txt").TrimStart('\\').Trim();
 		Corporation.Text = ReadContent ("coverLetterRecipientFirstLine.txt");
 		Email.Text = ReadContent ("eMailAddress.txt");
 		Recruiting.Text = ReadContent ("helperRecipientSecondLine0.txt");
 		Person.Text = ReadContent ("helperRecipientSecondLine1.txt");
 		Street.Text = ReadContent ("helperRecipientSecondLine2.txt");
 		City.Text = ReadContent ("helperRecipientSecondLine3.txt");
-		CoverLetterSalary ();
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -50,7 +44,7 @@ public partial class MainWindow: Gtk.Window
 	private string ReadContent (string fileName)
 	{
 		_pathVariables = _pathShell + fileName;
-		return System.IO.File.ReadAllText(_pathVariables).Trim();
+		return System.IO.File.ReadAllText(_pathVariables);
 	}
 
 	private void WriteContent (string entry, string fileName)
@@ -61,7 +55,17 @@ public partial class MainWindow: Gtk.Window
 		}
 	}
 
-	private void CoverLetterOpening()
+	private void ReadJobPosition()
+	{
+		char[] trimCoverLetterJobNumber = { '\\', ' ', ',' };
+		_pathVariables = _pathShell + "coverLetterPosition.txt";
+		string coverLetterJobPosition = System.IO.File.ReadAllText(_pathVariables);
+		string[] stringSeparators = new string[] {"Bewerbung auf die Stelle "," als"};
+		string[] jobCodePosition = coverLetterJobPosition.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
+		JobPosition.Text = jobCodePosition [1].Trim();
+	}
+
+	private void ReadOpening()
 	{
 		char[] trimComma = {','};
 		_pathVariables = _pathShell + "coverLetterOpening.txt";
@@ -96,7 +100,7 @@ public partial class MainWindow: Gtk.Window
 		}
 	}
 
-	private void CoverLetterSalary()
+	private void ReadSalary()
 	{
 		_pathVariables = _pathShell + "coverLetterSalary.txt";
 		string coverLetterSalary = System.IO.File.ReadAllText(_pathVariables);

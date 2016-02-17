@@ -64,20 +64,12 @@ public partial class MainWindow: Gtk.Window
 			LetterOpeningCombo.Active = 2;
 		}
 
-		_pathVariables = _pathShell + "coverLetterRecipientFirstLine.txt";
-		string coverLetterCorporation = System.IO.File.ReadAllText(_pathVariables);
-		Corporation.Text = coverLetterCorporation;
-
-
+		Corporation.Text = ReadContent ("coverLetterRecipientFirstLine.txt");
 		Email.Text = ReadContent ("eMailAddress.txt");
-
-		Recruiting.Text = ReadContent ("helperRecipientSecondLine0.txt").Trim();
-		Person.Text = ReadContent ("helperRecipientSecondLine1.txt").Trim();
-		Street.Text = ReadContent ("helperRecipientSecondLine2.txt").Trim();
-		City.Text = ReadContent ("helperRecipientSecondLine3.txt").Trim();
-
-
-
+		Recruiting.Text = ReadContent ("helperRecipientSecondLine0.txt");
+		Person.Text = ReadContent ("helperRecipientSecondLine1.txt");
+		Street.Text = ReadContent ("helperRecipientSecondLine2.txt");
+		City.Text = ReadContent ("helperRecipientSecondLine3.txt");
 		CoverLetterSalary ();
 	}
 
@@ -90,7 +82,7 @@ public partial class MainWindow: Gtk.Window
 	private string ReadContent (string fileName)
 	{
 		_pathVariables = _pathShell + fileName;
-		return System.IO.File.ReadAllText(_pathVariables);
+		return System.IO.File.ReadAllText(_pathVariables).Trim();
 	}
 
 	private void WriteContent (string entry, string fileName)

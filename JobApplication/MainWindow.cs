@@ -197,8 +197,6 @@ public partial class MainWindow: Gtk.Window
 			outfile.Write("\\ " + JobNumber.Text);
 		}
 	}
-		
-
 
 	/// <summary>
 	/// Writes contents of the entries to the coverLetterRecipientSecondLine.txt file.
@@ -254,11 +252,27 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnLetterOpeningComboChanged (object sender, EventArgs e)
 	{
+		char[] split = new[] {' '};
+
 		if (LetterOpeningCombo.Active == 0) 
 		{
 			LetterOpeningPerson.Text = "";
 			Person.Text = "";
 		}
-		
+
+		if (LetterOpeningCombo.Active == 1 || LetterOpeningCombo.Active == 2) 
+		{
+			string tempPerson = Person.Text;
+
+			if (!tempPerson.Equals ("")) 
+			{	
+				string[] tempPersonArray = tempPerson.Split (split, 2);
+
+				if (tempPersonArray.Length > 1) 
+				{
+					LetterOpeningPerson.Text = tempPersonArray [1].ToString ();
+				}
+			}
+		}
 	}
 }

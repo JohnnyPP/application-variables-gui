@@ -6,7 +6,7 @@ public partial class MainWindow: Gtk.Window
 {
 	string _pathShell;
 	string _pathVariables;
-	string _personOpeningLetter;
+	//string _personOpeningLetter;
 
 	public MainWindow (string pathShell) : base (Gtk.WindowType.Toplevel)
 	{
@@ -86,7 +86,6 @@ public partial class MainWindow: Gtk.Window
 
 	private void ReadJobPosition()
 	{
-		//char[] trimCoverLetterJobNumber = { '\\', ' ', ',' };
 		_pathVariables = _pathShell + "coverLetterPosition.txt";
 		string coverLetterJobPosition = System.IO.File.ReadAllText(_pathVariables);
 		string[] stringSeparators = new string[] {"Bewerbung auf die Stelle "," als"};
@@ -97,6 +96,7 @@ public partial class MainWindow: Gtk.Window
 	private void ReadOpening()
 	{
 		char[] trimComma = {','};
+		//string _personOpeningLetter;
 		_pathVariables = _pathShell + "coverLetterOpening.txt";
 		string coverLetterOpening = System.IO.File.ReadAllText(_pathVariables);
 
@@ -104,7 +104,7 @@ public partial class MainWindow: Gtk.Window
 		{
 			// ToDO: after choosing Sehr geehrte Damen und Herren the Person and LetterOpeningPerson should be emptied
 			// make combo swith to "Sehr geehrte Damen und Herren"
-			_personOpeningLetter = LetterOpeningPerson.Text = "";
+			LetterOpeningPerson.Text = "";
 			LetterOpeningCombo.Active = 0;
 		}
 		if (coverLetterOpening.StartsWith ("Sehr geehrte Frau")) 
@@ -114,7 +114,7 @@ public partial class MainWindow: Gtk.Window
 				? coverLetterOpening
 				: coverLetterOpening.Remove(index, "Sehr geehrte Frau".Length);
 
-			_personOpeningLetter = LetterOpeningPerson.Text = coverLetterOpeningWoman.Trim().TrimEnd(trimComma);
+			LetterOpeningPerson.Text = coverLetterOpeningWoman.Trim().TrimEnd(trimComma);
 			LetterOpeningCombo.Active = 1;
 		}
 		if (coverLetterOpening.StartsWith ("Sehr geehrter Herr")) 
@@ -124,7 +124,7 @@ public partial class MainWindow: Gtk.Window
 				? coverLetterOpening
 				: coverLetterOpening.Remove(index, "Sehr geehrter Herr".Length);
 
-			_personOpeningLetter = LetterOpeningPerson.Text = coverLetterOpeningMan.Trim().TrimEnd(trimComma);
+			LetterOpeningPerson.Text = coverLetterOpeningMan.Trim().TrimEnd(trimComma);
 			LetterOpeningCombo.Active = 2;
 		}
 	}

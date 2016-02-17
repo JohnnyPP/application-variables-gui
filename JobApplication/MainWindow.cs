@@ -249,48 +249,41 @@ public partial class MainWindow: Gtk.Window
 	}
 
 	/// <summary>
-	/// Writes contents of the helper fileNames to the coverLetterRecipientSecondLine.txt file
+	/// Writes contents of the entries to the coverLetterRecipientSecondLine.txt file.
 	/// coverLetterRecipientSecondLine.txt file follows the pattern: "Recruiting\\Person\\Street\\City"
 	/// e.g. "Personalabteilung\\Karin Deckert\\Bahnhofstrasse\\Oberkochen"
 	/// where "\\" is the new line escape character in Latex 
 	/// </summary>
 	private void CoverLetterRecipientSecondLine()
 	{
-		string[] fileNames = new[] 
+		Entry[] secondLineEntries = new[] 
 		{
-			"helperRecipientSecondLine0.txt",
-			"helperRecipientSecondLine1.txt",
-			"helperRecipientSecondLine2.txt",
-			"helperRecipientSecondLine3.txt"
+			Recruiting,
+			Person,
+			Street,
+			City
 		};
 
-		System.Text.StringBuilder sb = new System.Text.StringBuilder();
+		System.Text.StringBuilder secondLineAppended = new System.Text.StringBuilder();
 
-		WriteContent (Recruiting.Text, fileNames[0]);
-		WriteContent (Person.Text, fileNames[1]);
-		WriteContent (Street.Text, fileNames[2]);
-		WriteContent (City.Text, fileNames[3]);
-
-		using (var output = new StreamWriter(_pathShell + "coverLetterRecipientSecondLine.txt"))
+		foreach (var entry in secondLineEntries)
 		{
-			foreach (var file in fileNames)
-			{
-				using (var input = new StreamReader(_pathShell + file))
-				{
-					string tempInput = input.ReadToEnd().ToString();
+			string tempEntry = entry.Text;
 
-					if (tempInput.Equals ("")) 
-					{
-						sb.Append(tempInput);
-					}
-					else 
-					{
-						sb.Append(tempInput + "\\\\");
-					}
-				}
+			if (tempEntry.Equals ("")) 
+			{
+				secondLineAppended.Append(tempEntry);
 			}
-			string appendedString = sb.ToString().TrimEnd('\\');
-			output.Write(appendedString);
+			else 
+			{
+				secondLineAppended.Append(tempEntry + "\\\\");
+			}
+		}
+		string appendedString = secondLineAppended.ToString().TrimEnd('\\');
+
+		using (var writeToFile = new StreamWriter(_pathShell + "coverLetterRecipientSecondLine.txt"))
+		{
+			writeToFile.Write(appendedString);
 		}
 	}
 }

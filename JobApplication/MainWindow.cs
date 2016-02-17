@@ -22,7 +22,6 @@ public partial class MainWindow: Gtk.Window
 	{
 		char[] trimCoverLetterJobNumber = { '\\', ' ', ',' };
 		char[] trimComma = {','};
-		//char[] trimCoverLetterOpening = { "Sehr geehrte Frau", "Sehr geehrter Herr"};
 
 		_pathVariables = _pathShell + "coverLetterCodeNumber.txt";
 		string coverLetterJobNumber = System.IO.File.ReadAllText(_pathVariables);
@@ -70,13 +69,6 @@ public partial class MainWindow: Gtk.Window
 		Corporation.Text = coverLetterCorporation;
 
 
-
-
-
-		//_pathVariables = _pathShell + "eMailAddress.txt";
-		//string coverLetterEmail = System.IO.File.ReadAllText(_pathVariables);
-		//Email.Text = coverLetterEmail;
-
 		Email.Text = ReadContent ("eMailAddress.txt");
 
 		Recruiting.Text = ReadContent ("helperRecipientSecondLine0.txt").Trim();
@@ -84,78 +76,9 @@ public partial class MainWindow: Gtk.Window
 		Street.Text = ReadContent ("helperRecipientSecondLine2.txt").Trim();
 		City.Text = ReadContent ("helperRecipientSecondLine3.txt").Trim();
 
-//		_pathVariables = _pathShell + "coverLetterRecipientSecondLine.txt";
-//		string coverLetterRecipientSecondLine = System.IO.File.ReadAllText(_pathVariables);
-//		string[] stringSeparator = new string[] {"\\"};
-//		string[] separatedRecipientSecondLine = coverLetterRecipientSecondLine.Split(stringSeparator, StringSplitOptions.RemoveEmptyEntries);
-//
-//
-//		string isLineActive = ReadContent ("helperRecipientSecondLine.txt");
-//
-//		if (isLineActive [0].Equals('1'))
-//		{
-//			// Recrutig was used
-//			Recruiting.Text = separatedRecipientSecondLine [0].Trim();
-//		}
-//		else
-//		{
-//			Recruiting.Text = "";
-//		}
-//
-//		if (isLineActive [1].Equals('1'))
-//		{
-//			// Person was used
-//			Person.Text = separatedRecipientSecondLine [1].Trim();
-//		}
-//		else
-//		{
-//			Person.Text = "";
-//		}
-//
-//		if (isLineActive [2].Equals('1'))
-//		{
-//			// Street was used
-//			Street.Text = separatedRecipientSecondLine [2].Trim();
-//		}
-//		else
-//		{
-//			Street.Text = "";
-//		}
-//
-//		if (isLineActive [3].Equals('1'))
-//		{
-//			// City was used
-//			City.Text = separatedRecipientSecondLine [3].Trim();
-//		}
-//		else
-//		{
-//			City.Text = "";
-//		}
 
 
-
-
-
-		_pathVariables = _pathShell + "coverLetterSalary.txt";
-		string coverLetterSalary = System.IO.File.ReadAllText(_pathVariables);
-		if (coverLetterSalary == "\\")
-		{
-			Salary.Text = "";
-			checkButtonSalary.Active = false;
-		}
-		else 
-		{
-			string[] salarySeparators = new string[] {"Meine Gehaltsvorstellungen liegen zwischen "," Euro brutto im Jahr."};
-			string[] salaryPosition = coverLetterSalary.Split(salarySeparators, StringSplitOptions.RemoveEmptyEntries);
-			Salary.Text = salaryPosition [0].Trim();
-			checkButtonSalary.Active = true;
-		}
-
-
-
-
-
-		
+		CoverLetterSalary ();
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -175,6 +98,24 @@ public partial class MainWindow: Gtk.Window
 		using (StreamWriter outfile = new StreamWriter(_pathShell + fileName))
 		{
 			outfile.Write(entry);
+		}
+	}
+
+	private void CoverLetterSalary()
+	{
+		_pathVariables = _pathShell + "coverLetterSalary.txt";
+		string coverLetterSalary = System.IO.File.ReadAllText(_pathVariables);
+		if (coverLetterSalary == "\\")
+		{
+			Salary.Text = "";
+			checkButtonSalary.Active = false;
+		}
+		else 
+		{
+			string[] salarySeparators = new string[] {"Meine Gehaltsvorstellungen liegen zwischen "," Euro brutto im Jahr."};
+			string[] salaryPosition = coverLetterSalary.Split(salarySeparators, StringSplitOptions.RemoveEmptyEntries);
+			Salary.Text = salaryPosition [0].Trim();
+			checkButtonSalary.Active = true;
 		}
 	}
 

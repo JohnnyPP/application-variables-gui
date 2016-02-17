@@ -21,11 +21,8 @@ public partial class MainWindow: Gtk.Window
 	private void Initialization()
 	{
 		char[] trimCoverLetterJobNumber = { '\\', ' ', ',' };
-		char[] trimComma = {','};
 
-		_pathVariables = _pathShell + "coverLetterCodeNumber.txt";
-		string coverLetterJobNumber = System.IO.File.ReadAllText(_pathVariables);
-		JobNumber.Text = coverLetterJobNumber.TrimStart (trimCoverLetterJobNumber);
+		JobNumber.Text = ReadContent("coverLetterCodeNumber.txt");
 
 		_pathVariables = _pathShell + "coverLetterPosition.txt";
 		string coverLetterJobPosition = System.IO.File.ReadAllText(_pathVariables);
@@ -33,36 +30,7 @@ public partial class MainWindow: Gtk.Window
 		string[] jobCodePosition = coverLetterJobPosition.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
 		JobPosition.Text = jobCodePosition [1].Trim();
 
-		_pathVariables = _pathShell + "coverLetterOpening.txt";
-		string coverLetterOpening = System.IO.File.ReadAllText(_pathVariables);
-
-		if (coverLetterOpening.StartsWith ("Sehr geehrte Damen und Herren")) 
-		{
-			// ToDO: after choosing Sehr geehrte Damen und Herren the Person and LetterOpeningPerson should be emptied
-			// make combo swith to "Sehr geehrte Damen und Herren"
-			_personOpeningLetter = LetterOpeningPerson.Text = "";
-			LetterOpeningCombo.Active = 0;
-		}
-		if (coverLetterOpening.StartsWith ("Sehr geehrte Frau")) 
-		{
-			int index = coverLetterOpening.IndexOf("Sehr geehrte Frau");
-			string coverLetterOpeningWoman = (index < 0)
-				? coverLetterOpening
-				: coverLetterOpening.Remove(index, "Sehr geehrte Frau".Length);
-			
-			_personOpeningLetter = LetterOpeningPerson.Text = coverLetterOpeningWoman.Trim().TrimEnd(trimComma);
-			LetterOpeningCombo.Active = 1;
-		}
-		if (coverLetterOpening.StartsWith ("Sehr geehrter Herr")) 
-		{
-			int index = coverLetterOpening.IndexOf("Sehr geehrter Herr");
-			string coverLetterOpeningMan = (index < 0)
-				? coverLetterOpening
-				: coverLetterOpening.Remove(index, "Sehr geehrter Herr".Length);
-			
-			_personOpeningLetter = LetterOpeningPerson.Text = coverLetterOpeningMan.Trim().TrimEnd(trimComma);
-			LetterOpeningCombo.Active = 2;
-		}
+		CoverLetterOpening ();
 
 		Corporation.Text = ReadContent ("coverLetterRecipientFirstLine.txt");
 		Email.Text = ReadContent ("eMailAddress.txt");
@@ -90,6 +58,41 @@ public partial class MainWindow: Gtk.Window
 		using (StreamWriter outfile = new StreamWriter(_pathShell + fileName))
 		{
 			outfile.Write(entry);
+		}
+	}
+
+	private void CoverLetterOpening()
+	{
+		char[] trimComma = {','};
+		_pathVariables = _pathShell + "coverLetterOpening.txt";
+		string coverLetterOpening = System.IO.File.ReadAllText(_pathVariables);
+
+		if (coverLetterOpening.StartsWith ("Sehr geehrte Damen und Herren")) 
+		{
+			// ToDO: after choosing Sehr geehrte Damen und Herren the Person and LetterOpeningPerson should be emptied
+			// make combo swith to "Sehr geehrte Damen und Herren"
+			_personOpeningLetter = LetterOpeningPerson.Text = "";
+			LetterOpeningCombo.Active = 0;
+		}
+		if (coverLetterOpening.StartsWith ("Sehr geehrte Frau")) 
+		{
+			int index = coverLetterOpening.IndexOf("Sehr geehrte Frau");
+			string coverLetterOpeningWoman = (index < 0)
+				? coverLetterOpening
+				: coverLetterOpening.Remove(index, "Sehr geehrte Frau".Length);
+
+			_personOpeningLetter = LetterOpeningPerson.Text = coverLetterOpeningWoman.Trim().TrimEnd(trimComma);
+			LetterOpeningCombo.Active = 1;
+		}
+		if (coverLetterOpening.StartsWith ("Sehr geehrter Herr")) 
+		{
+			int index = coverLetterOpening.IndexOf("Sehr geehrter Herr");
+			string coverLetterOpeningMan = (index < 0)
+				? coverLetterOpening
+				: coverLetterOpening.Remove(index, "Sehr geehrter Herr".Length);
+
+			_personOpeningLetter = LetterOpeningPerson.Text = coverLetterOpeningMan.Trim().TrimEnd(trimComma);
+			LetterOpeningCombo.Active = 2;
 		}
 	}
 

@@ -6,14 +6,10 @@ public partial class MainWindow: Gtk.Window
 {
 	string _pathShell;
 	string _pathVariables;
-	//string _personOpeningLetter;
 
 	public MainWindow (string pathShell) : base (Gtk.WindowType.Toplevel)
 	{
 		_pathShell = pathShell + "/variables/";
-
-		// media/ntfs2/FirefoxProfile/zotero/storage/WJACEEU9
-		// mono JobApplication.exe /media/ntfs2/FirefoxProfile/zotero/storage/WJACEEU9
 		Build ();
 		Initialization ();
 	}
@@ -156,7 +152,7 @@ public partial class MainWindow: Gtk.Window
 		{
 			if (checkButtonSalary.Active) 
 			{
-				outfile.Write("Meine Gehaltsvorstellungen liegen zwischen " + Salary.Text + " Euro brutto im Jahr.");
+				outfile.Write("\\ Meine Gehaltsvorstellungen liegen zwischen " + Salary.Text + " Euro brutto im Jahr.");
 			} 
 			else 
 			{

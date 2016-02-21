@@ -2,11 +2,24 @@
 using System.IO;
 using Gtk;
 
+/// <summary>
+/// Main window.
+/// </summary>
 public partial class MainWindow: Gtk.Window
 {
+	/// <summary>
+	/// The path shell.
+	/// </summary>
 	string _pathShell;
+	/// <summary>
+	/// The path variables.
+	/// </summary>
 	string _pathVariables;
 
+	/// <summary>
+	/// Initializes a new instance of the <see cref="MainWindow"/> class.
+	/// </summary>
+	/// <param name="pathShell">Path shell.</param>
 	public MainWindow (string pathShell) : base (Gtk.WindowType.Toplevel)
 	{
 		_pathShell = pathShell + "/variables/";
@@ -21,7 +34,7 @@ public partial class MainWindow: Gtk.Window
 	{
 		ReadJobPosition ();
 		ReadOpening ();
-		ReadSalary ();
+		//ReadSalary ();
 		JobNumber.Text = ReadContent("coverLetterCodeNumber.txt").TrimStart('\\').Trim();
 		Corporation.Text = ReadContent ("coverLetterRecipientFirstLine.txt");
 		Email.Text = ReadContent ("eMailAddress.txt");
@@ -49,12 +62,22 @@ public partial class MainWindow: Gtk.Window
 		Application.Quit ();
 	}
 
+	/// <summary>
+	/// Raises the delete event event.
+	/// </summary>
+	/// <param name="sender">Sender.</param>
+	/// <param name="a">The alpha component.</param>
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		Application.Quit ();
 		a.RetVal = true;
 	}
 
+	/// <summary>
+	/// Raises the check button salary clicked event.
+	/// </summary>
+	/// <param name="sender">Sender.</param>
+	/// <param name="e">E.</param>
 	protected void OnCheckButtonSalaryClicked (object sender, EventArgs e)
 	{
 		if (checkButtonSalary.Active == true) 
@@ -67,12 +90,22 @@ public partial class MainWindow: Gtk.Window
 		}
 	}
 
+	/// <summary>
+	/// Reads the content.
+	/// </summary>
+	/// <returns>The content.</returns>
+	/// <param name="fileName">File name.</param>
 	private string ReadContent (string fileName)
 	{
 		_pathVariables = _pathShell + fileName;
 		return System.IO.File.ReadAllText(_pathVariables);
 	}
 
+	/// <summary>
+	/// Writes the content.
+	/// </summary>
+	/// <param name="entry">Entry.</param>
+	/// <param name="fileName">File name.</param>
 	private void WriteContent (string entry, string fileName)
 	{
 		using (StreamWriter outfile = new StreamWriter(_pathShell + fileName))
@@ -81,6 +114,9 @@ public partial class MainWindow: Gtk.Window
 		}
 	}
 
+	/// <summary>
+	/// Reads the job position.
+	/// </summary>
 	private void ReadJobPosition()
 	{
 		_pathVariables = _pathShell + "coverLetterPosition.txt";
@@ -90,6 +126,9 @@ public partial class MainWindow: Gtk.Window
 		JobPosition.Text = jobCodePosition [1].Trim();
 	}
 
+	/// <summary>
+	/// Reads the opening.
+	/// </summary>
 	private void ReadOpening()
 	{
 		char[] trimComma = {','};
@@ -98,8 +137,6 @@ public partial class MainWindow: Gtk.Window
 
 		if (coverLetterOpening.StartsWith ("Sehr geehrte Damen und Herren")) 
 		{
-			// ToDO: after choosing Sehr geehrte Damen und Herren the Person and LetterOpeningPerson should be emptied
-			// make combo swith to "Sehr geehrte Damen und Herren"
 			LetterOpeningPerson.Text = "";
 			LetterOpeningCombo.Active = 0;
 		}
@@ -125,6 +162,9 @@ public partial class MainWindow: Gtk.Window
 		}
 	}
 
+	/// <summary>
+	/// Reads the salary.
+	/// </summary>
 	private void ReadSalary()
 	{
 		_pathVariables = _pathShell + "coverLetterSalary.txt";
@@ -136,7 +176,7 @@ public partial class MainWindow: Gtk.Window
 		}
 		else 
 		{
-			string[] salarySeparators = new string[] {"Meine Gehaltsvorstellungen liegen zwischen "," Euro brutto im Jahr."};
+			string[] salarySeparators = new string[] {"\\ Meine Gehaltsvorstellungen liegen zwischen "," Euro brutto im Jahr."};
 			string[] salaryPosition = coverLetterSalary.Split(salarySeparators, StringSplitOptions.RemoveEmptyEntries);
 			Salary.Text = salaryPosition [0].Trim();
 			checkButtonSalary.Active = true;
@@ -247,6 +287,11 @@ public partial class MainWindow: Gtk.Window
 		}
 	}
 
+	/// <summary>
+	/// Raises the letter opening combo changed event.
+	/// </summary>
+	/// <param name="sender">Sender.</param>
+	/// <param name="e">E.</param>
 	protected void OnLetterOpeningComboChanged (object sender, EventArgs e)
 	{
 		char[] split = new[] {' '};

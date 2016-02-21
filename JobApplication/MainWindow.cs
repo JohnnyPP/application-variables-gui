@@ -231,10 +231,20 @@ public partial class MainWindow: Gtk.Window
 	/// </summary>
 	private void WriteOpening()
 	{
+		string temp; 
+
 		using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterOpening.txt"))
 		{
-			string temp = LetterOpeningCombo.ActiveText + " " + LetterOpeningPerson.Text;
-			outfile.Write(temp);
+			if (LetterOpeningCombo.Active == 0) 
+			{
+				temp = LetterOpeningCombo.ActiveText + ",";
+			} 
+			else 
+			{
+				temp = LetterOpeningCombo.ActiveText + " " + LetterOpeningPerson.Text + ",";
+			}
+
+			outfile.Write (temp);
 		}
 	}
 

@@ -28,6 +28,11 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="cp /home/kolan/mycode/csharp/GUI/JobApplication/JobApplication/bin/Release/JobApplication.exe /media/ntfs2/FirefoxProfile/zotero/storage/WJACEEU9/sourceCode/JobApplication.exe" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

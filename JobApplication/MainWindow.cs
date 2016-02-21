@@ -34,7 +34,7 @@ public partial class MainWindow: Gtk.Window
 	{
 		ReadJobPosition ();
 		ReadOpening ();
-		//ReadSalary ();
+		ReadSalary ();
 		JobNumber.Text = ReadContent("coverLetterCodeNumber.txt").TrimStart('\\').Trim();
 		Corporation.Text = ReadContent ("coverLetterRecipientFirstLine.txt");
 		Email.Text = ReadContent ("eMailAddress.txt");
@@ -55,6 +55,7 @@ public partial class MainWindow: Gtk.Window
 		WriteCodeNumber ();
 		WritePosition ();
 		WriteSalary ();
+		WriteSalaryHelper ();
 		CoverLetterRecipientSecondLine ();
 		WriteContent (Email.Text, "eMailAddress.txt");
 		WriteContent (Corporation.Text, "coverLetterRecipientFirstLine.txt");
@@ -82,7 +83,7 @@ public partial class MainWindow: Gtk.Window
 	{
 		if (checkButtonSalary.Active == true) 
 		{
-			Salary.Text = "56 000,- und 66 000,-";
+			Salary.Text = ReadContent ("helperSalary.txt").Trim();
 		} 
 		else 
 		{
@@ -176,9 +177,7 @@ public partial class MainWindow: Gtk.Window
 		}
 		else 
 		{
-			string[] salarySeparators = new string[] {"\\ Meine Gehaltsvorstellungen liegen zwischen "," Euro brutto im Jahr."};
-			string[] salaryPosition = coverLetterSalary.Split(salarySeparators, StringSplitOptions.RemoveEmptyEntries);
-			Salary.Text = salaryPosition [0].Trim();
+			ReadContent ("helperSalary.txt");
 			checkButtonSalary.Active = true;
 		}
 	}
@@ -197,6 +196,21 @@ public partial class MainWindow: Gtk.Window
 			else 
 			{
 				outfile.Write("\\");
+			}
+		}
+	}
+
+	/// <summary>
+	/// Writes the salary helper.
+	/// </summary>
+	private void WriteSalaryHelper()
+	{
+		if (checkButtonSalary.Active) 
+		{
+			using (StreamWriter outfile = new StreamWriter(_pathShell + "helperSalary.txt"))
+			{
+
+				outfile.Write(Salary.Text);
 			}
 		}
 	}

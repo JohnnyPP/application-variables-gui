@@ -6,7 +6,7 @@
   <import>
     <widget-library name="../bin/Release/JobApplication.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="1017 318">
+  <widget class="Gtk.Window" id="JobApplication.MainWindow" design-size="1017 318">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Job applications</property>
     <property name="WindowPosition">CenterOnParent</property>

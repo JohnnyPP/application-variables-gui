@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobApplication", "JobApplic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadContent", "ReadContent\ReadContent.csproj", "{D43B9F03-3C03-4E10-94ED-8E7C4C0A9B91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WriteContent", "WriteContent\WriteContent.csproj", "{54B1C12D-FC83-4F88-9070-0C123727A713}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,6 +17,10 @@ Global
 		{04DBCF35-4D00-4378-8E15-B62E1CC0DFA4}.Debug|x86.Build.0 = Debug|x86
 		{04DBCF35-4D00-4378-8E15-B62E1CC0DFA4}.Release|x86.ActiveCfg = Release|x86
 		{04DBCF35-4D00-4378-8E15-B62E1CC0DFA4}.Release|x86.Build.0 = Release|x86
+		{54B1C12D-FC83-4F88-9070-0C123727A713}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{54B1C12D-FC83-4F88-9070-0C123727A713}.Debug|x86.Build.0 = Debug|Any CPU
+		{54B1C12D-FC83-4F88-9070-0C123727A713}.Release|x86.ActiveCfg = Release|Any CPU
+		{54B1C12D-FC83-4F88-9070-0C123727A713}.Release|x86.Build.0 = Release|Any CPU
 		{D43B9F03-3C03-4E10-94ED-8E7C4C0A9B91}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{D43B9F03-3C03-4E10-94ED-8E7C4C0A9B91}.Debug|x86.Build.0 = Debug|Any CPU
 		{D43B9F03-3C03-4E10-94ED-8E7C4C0A9B91}.Release|x86.ActiveCfg = Release|Any CPU

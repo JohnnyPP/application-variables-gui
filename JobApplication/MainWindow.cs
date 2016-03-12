@@ -102,19 +102,6 @@ namespace JobApplication
 		}
 
 		/// <summary>
-		/// Writes the content.
-		/// </summary>
-		/// <param name="entry">Entry.</param>
-		/// <param name="fileName">File name.</param>
-		private void WriteContent (string entry, string fileName)
-		{
-			using (StreamWriter outfile = new StreamWriter(_pathShell + fileName))
-			{
-				outfile.Write(entry);
-			}
-		}
-
-		/// <summary>
 		/// Reads the job position.
 		/// </summary>
 		private void ReadJobPosition()
@@ -283,7 +270,7 @@ namespace JobApplication
 
 			for (int i = 0; i < 4; i++) 
 			{			
-				WriteContent (secondLineEntries [i].Text, secondLineFiles [i]);
+				_wfc.WriteContent (secondLineEntries [i].Text, secondLineFiles [i]);
 			}
 
 			System.Text.StringBuilder secondLineAppended = new System.Text.StringBuilder();

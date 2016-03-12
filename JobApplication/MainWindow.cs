@@ -41,9 +41,10 @@ namespace JobApplication
 		/// </summary>
 		private void Initialization()
 		{
-			ReadJobPosition ();
-			ReadOpening ();
-			ReadSalary ();
+			JobPosition.Text = _rfc.ReadJobPosition ();
+			LetterOpeningPerson.Text = _rfc.ReadOpening().Item1;
+			LetterOpeningCombo.Active = _rfc.ReadOpening().Item2;
+			checkButtonSalary.Active = _rfc.ReadSalary ();
 			JobNumber.Text = _rfc.ReadContent("coverLetterCodeNumber.txt").TrimStart('\\').Trim();
 			Corporation.Text = _rfc.ReadContent ("coverLetterRecipientFirstLine.txt");
 			Email.Text = _rfc.ReadContent ("eMailAddress.txt");
@@ -97,70 +98,6 @@ namespace JobApplication
 			else 
 			{
 				Salary.Text = "";
-			}
-		}
-
-		/// <summary>
-		/// Reads the job position.
-		/// </summary>
-		private void ReadJobPosition()
-		{
-			string coverLetterJobPosition = _rfc.ReadContent ("coverLetterPosition.txt");
-			string[] stringSeparators = new string[] {"Bewerbung auf die Stelle "," als"};
-			string[] jobCodePosition = coverLetterJobPosition.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
-			JobPosition.Text = jobCodePosition [1].Trim();
-		}
-
-		/// <summary>
-		/// Reads the opening.
-		/// </summary>
-		private void ReadOpening()
-		{
-			char[] trimComma = {','};
-			string coverLetterOpening = _rfc.ReadContent("coverLetterOpening.txt");
-
-			if (coverLetterOpening.StartsWith ("Sehr geehrte Damen und Herren")) 
-			{
-				LetterOpeningPerson.Text = "";
-				LetterOpeningCombo.Active = 0;
-			}
-			if (coverLetterOpening.StartsWith ("Sehr geehrte Frau")) 
-			{
-				int index = coverLetterOpening.IndexOf("Sehr geehrte Frau");
-				string coverLetterOpeningWoman = (index < 0)
-					? coverLetterOpening
-					: coverLetterOpening.Remove(index, "Sehr geehrte Frau".Length);
-
-				LetterOpeningPerson.Text = coverLetterOpeningWoman.Trim().TrimEnd(trimComma);
-				LetterOpeningCombo.Active = 1;
-			}
-			if (coverLetterOpening.StartsWith ("Sehr geehrter Herr")) 
-			{
-				int index = coverLetterOpening.IndexOf("Sehr geehrter Herr");
-				string coverLetterOpeningMan = (index < 0)
-					? coverLetterOpening
-					: coverLetterOpening.Remove(index, "Sehr geehrter Herr".Length);
-
-				LetterOpeningPerson.Text = coverLetterOpeningMan.Trim().TrimEnd(trimComma);
-				LetterOpeningCombo.Active = 2;
-			}
-		}
-
-		/// <summary>
-		/// Reads the salary.
-		/// </summary>
-		private void ReadSalary()
-		{
-			string coverLetterSalary = _rfc.ReadContent ("coverLetterSalary.txt");
-			if (coverLetterSalary == "\\")
-			{
-				Salary.Text = "";
-				checkButtonSalary.Active = false;
-			}
-			else 
-			{
-				_rfc.ReadContent ("helperSalary.txt");
-				checkButtonSalary.Active = true;
 			}
 		}
 

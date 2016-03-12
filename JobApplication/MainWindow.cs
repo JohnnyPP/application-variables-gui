@@ -14,13 +14,12 @@ namespace JobApplication
 		/// </summary>
 		string _pathShell;
 		/// <summary>
-		/// The path variables.
-		/// </summary>
-		string _pathVariables;
-		/// <summary>
 		/// The rfc.
 		/// </summary>
 		ReadFileContent _rfc;
+		/// <summary>
+		/// The wfc.
+		/// </summary>
 		WriteFileContent _wfc;
 
 		/// <summary>
@@ -118,8 +117,7 @@ namespace JobApplication
 		private void ReadOpening()
 		{
 			char[] trimComma = {','};
-			_pathVariables = _pathShell + "coverLetterOpening.txt";
-			string coverLetterOpening = System.IO.File.ReadAllText(_pathVariables);
+			string coverLetterOpening = _rfc.ReadContent("coverLetterOpening.txt");
 
 			if (coverLetterOpening.StartsWith ("Sehr geehrte Damen und Herren")) 
 			{
@@ -153,8 +151,7 @@ namespace JobApplication
 		/// </summary>
 		private void ReadSalary()
 		{
-			_pathVariables = _pathShell + "coverLetterSalary.txt";
-			string coverLetterSalary = System.IO.File.ReadAllText(_pathVariables);
+			string coverLetterSalary = _rfc.ReadContent ("coverLetterSalary.txt");
 			if (coverLetterSalary == "\\")
 			{
 				Salary.Text = "";

@@ -40,7 +40,14 @@ namespace JobApplication
 			string[] stringSeparators = new string[] {"Bewerbung auf die Stelle "," als"};
 			string[] jobCodePosition = coverLetterJobPosition.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
 
-			return jobCodePosition [1].Trim();
+			if (jobCodePosition.Length == 2) 
+			{
+				return jobCodePosition [1].Trim ();
+			} 
+			else 
+			{	
+				return jobCodePosition [0].Trim ();;
+			}
 		}
 
 		/// <summary>

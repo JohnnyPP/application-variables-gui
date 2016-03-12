@@ -62,10 +62,10 @@ namespace JobApplication
 		protected void OnCreateApplicationClicked (object sender, EventArgs e)
 		{
 			WriteOpening ();
-			WriteCodeNumber ();
+			_wfc.WriteContent ("\\ " + JobNumber.Text, "coverLetterCodeNumber.txt");
 			WritePosition ();
-			WriteSalary ();
-			WriteSalaryHelper ();
+			_wfc.WriteSalary (Salary.Text, checkButtonSalary.Active);
+			_wfc.WriteSalaryHelper (Salary.Text, checkButtonSalary.Active);
 			CoverLetterRecipientSecondLine ();
 			_wfc.WriteContent (Email.Text, "eMailAddress.txt");
 			_wfc.WriteContent (Corporation.Text, "coverLetterRecipientFirstLine.txt");
@@ -102,39 +102,6 @@ namespace JobApplication
 		}
 
 		/// <summary>
-		/// Writes coverLetterSalary.txt
-		/// </summary>
-		private void WriteSalary()
-		{
-			using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterSalary.txt"))
-			{
-				if (checkButtonSalary.Active) 
-				{
-					outfile.Write("\\ Meine Gehaltsvorstellungen liegen zwischen " + Salary.Text + " Euro brutto im Jahr.");
-				} 
-				else 
-				{
-					outfile.Write("\\");
-				}
-			}
-		}
-
-		/// <summary>
-		/// Writes the salary helper.
-		/// </summary>
-		private void WriteSalaryHelper()
-		{
-			if (checkButtonSalary.Active) 
-			{
-				using (StreamWriter outfile = new StreamWriter(_pathShell + "helperSalary.txt"))
-				{
-
-					outfile.Write(Salary.Text);
-				}
-			}
-		}
-
-		/// <summary>
 		/// Writes coverLetterPosition.txt
 		/// </summary>
 		private void WritePosition()
@@ -164,17 +131,6 @@ namespace JobApplication
 				}
 
 				outfile.Write (temp);
-			}
-		}
-
-		/// <summary>
-		/// Writes coverLetterCodeNumber.txt
-		/// </summary>
-		private void WriteCodeNumber()
-		{
-			using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterCodeNumber.txt"))
-			{
-				outfile.Write("\\ " + JobNumber.Text);
 			}
 		}
 

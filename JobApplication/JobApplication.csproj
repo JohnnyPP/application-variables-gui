@@ -74,5 +74,9 @@
       <Project>{D43B9F03-3C03-4E10-94ED-8E7C4C0A9B91}</Project>
       <Name>ReadContent</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WriteContent\WriteContent.csproj">
+      <Project>{54B1C12D-FC83-4F88-9070-0C123727A713}</Project>
+      <Name>WriteContent</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

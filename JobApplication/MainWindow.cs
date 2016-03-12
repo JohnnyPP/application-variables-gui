@@ -21,6 +21,7 @@ namespace JobApplication
 		/// The rfc.
 		/// </summary>
 		ReadFileContent _rfc;
+		WriteFileContent _wfc;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MainWindow"/> class.
@@ -30,6 +31,7 @@ namespace JobApplication
 		{
 			_pathShell = pathShell + "/variables/";
 			_rfc = new ReadFileContent (_pathShell);
+			_wfc = new WriteFileContent (_pathShell);
 			Build ();
 			Initialization ();
 		}
@@ -65,8 +67,8 @@ namespace JobApplication
 			WriteSalary ();
 			WriteSalaryHelper ();
 			CoverLetterRecipientSecondLine ();
-			WriteContent (Email.Text, "eMailAddress.txt");
-			WriteContent (Corporation.Text, "coverLetterRecipientFirstLine.txt");
+			_wfc.WriteContent (Email.Text, "eMailAddress.txt");
+			_wfc.WriteContent (Corporation.Text, "coverLetterRecipientFirstLine.txt");
 
 			Application.Quit ();
 		}

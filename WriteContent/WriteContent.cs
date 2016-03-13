@@ -103,6 +103,51 @@ namespace JobApplication
 				outfile.Write (temp);
 			}
 		}
+
+		/// <summary>
+		/// Writes contents of the entries to the coverLetterRecipientSecondLine.txt file.
+		/// coverLetterRecipientSecondLine.txt file follows the pattern: "Recruiting\\Person\\Street\\City"
+		/// e.g. "Personalabteilung\\Karin Deckert\\Bahnhofstrasse\\Oberkochen"
+		/// where "\\" is the new line escape character in Latex 
+		/// </summary>
+		/// <param name="content">SecondLineEntriesText.</param>
+		public void CoverLetterRecipientSecondLine(string[] secondLineEntriesText)
+		{
+			string[] secondLineFiles = new[] 
+			{
+				"helperRecipientSecondLine0.txt",
+				"helperRecipientSecondLine1.txt",
+				"helperRecipientSecondLine2.txt",
+				"helperRecipientSecondLine3.txt"
+			};
+
+			for (int i = 0; i < 4; i++) 
+			{			
+				WriteContent (secondLineEntriesText [i], secondLineFiles [i]);
+			}
+
+			System.Text.StringBuilder secondLineAppended = new System.Text.StringBuilder();
+
+			foreach (var entry in secondLineEntriesText)
+			{
+				string tempEntry = entry;
+
+				if (tempEntry.Equals ("")) 
+				{
+					secondLineAppended.Append(tempEntry);
+				}
+				else 
+				{
+					secondLineAppended.Append(tempEntry + "\\\\");
+				}
+			}
+			string appendedString = secondLineAppended.ToString().TrimEnd('\\');
+
+			using (var writeToFile = new StreamWriter(_pathShell + "coverLetterRecipientSecondLine.txt"))
+			{
+				writeToFile.Write(appendedString);
+			}
+		}
 	}
 }
 

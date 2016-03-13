@@ -66,7 +66,7 @@ namespace JobApplication
 			_wfc.WritePosition (JobNumber.Text, JobPosition.Text);
 			_wfc.WriteSalary (Salary.Text, checkButtonSalary.Active);
 			_wfc.WriteSalaryHelper (Salary.Text, checkButtonSalary.Active);
-			CoverLetterRecipientSecondLine ();
+			_wfc.CoverLetterRecipientSecondLine (new[] {Recruiting.Text, Person.Text, Street.Text, City.Text});
 			_wfc.WriteContent (Email.Text, "eMailAddress.txt");
 			_wfc.WriteContent (Corporation.Text, "coverLetterRecipientFirstLine.txt");
 
@@ -98,58 +98,6 @@ namespace JobApplication
 			else 
 			{
 				Salary.Text = "";
-			}
-		}
-
-		/// <summary>
-		/// Writes contents of the entries to the coverLetterRecipientSecondLine.txt file.
-		/// coverLetterRecipientSecondLine.txt file follows the pattern: "Recruiting\\Person\\Street\\City"
-		/// e.g. "Personalabteilung\\Karin Deckert\\Bahnhofstrasse\\Oberkochen"
-		/// where "\\" is the new line escape character in Latex 
-		/// </summary>
-		private void CoverLetterRecipientSecondLine()
-		{
-			Entry[] secondLineEntries = new[] 
-			{
-				Recruiting,
-				Person,
-				Street,
-				City
-			};
-
-			string[] secondLineFiles = new[] 
-			{
-				"helperRecipientSecondLine0.txt",
-				"helperRecipientSecondLine1.txt",
-				"helperRecipientSecondLine2.txt",
-				"helperRecipientSecondLine3.txt"
-			};
-
-			for (int i = 0; i < 4; i++) 
-			{			
-				_wfc.WriteContent (secondLineEntries [i].Text, secondLineFiles [i]);
-			}
-
-			System.Text.StringBuilder secondLineAppended = new System.Text.StringBuilder();
-
-			foreach (var entry in secondLineEntries)
-			{
-				string tempEntry = entry.Text;
-
-				if (tempEntry.Equals ("")) 
-				{
-					secondLineAppended.Append(tempEntry);
-				}
-				else 
-				{
-					secondLineAppended.Append(tempEntry + "\\\\");
-				}
-			}
-			string appendedString = secondLineAppended.ToString().TrimEnd('\\');
-
-			using (var writeToFile = new StreamWriter(_pathShell + "coverLetterRecipientSecondLine.txt"))
-			{
-				writeToFile.Write(appendedString);
 			}
 		}
 

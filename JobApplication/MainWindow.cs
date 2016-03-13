@@ -61,9 +61,9 @@ namespace JobApplication
 		/// <param name="e">E.</param>
 		protected void OnCreateApplicationClicked (object sender, EventArgs e)
 		{
-			WriteOpening ();
+			_wfc.WriteOpening (LetterOpeningCombo.Active, LetterOpeningCombo.ActiveText, LetterOpeningPerson.Text);
 			_wfc.WriteContent ("\\ " + JobNumber.Text, "coverLetterCodeNumber.txt");
-			WritePosition ();
+			_wfc.WritePosition (JobNumber.Text, JobPosition.Text);
 			_wfc.WriteSalary (Salary.Text, checkButtonSalary.Active);
 			_wfc.WriteSalaryHelper (Salary.Text, checkButtonSalary.Active);
 			CoverLetterRecipientSecondLine ();
@@ -98,39 +98,6 @@ namespace JobApplication
 			else 
 			{
 				Salary.Text = "";
-			}
-		}
-
-		/// <summary>
-		/// Writes coverLetterPosition.txt
-		/// </summary>
-		private void WritePosition()
-		{
-			using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterPosition.txt"))
-			{
-				outfile.Write("Bewerbung auf die Stelle " + JobNumber.Text + " als " + JobPosition.Text);
-			}
-		}
-
-		/// <summary>
-		/// Writes coverLetterOpening.txt
-		/// </summary>
-		private void WriteOpening()
-		{
-			string temp; 
-
-			using (StreamWriter outfile = new StreamWriter(_pathShell + "coverLetterOpening.txt"))
-			{
-				if (LetterOpeningCombo.Active == 0) 
-				{
-					temp = LetterOpeningCombo.ActiveText + ",";
-				} 
-				else 
-				{
-					temp = LetterOpeningCombo.ActiveText + " " + LetterOpeningPerson.Text + ",";
-				}
-
-				outfile.Write (temp);
 			}
 		}
 
